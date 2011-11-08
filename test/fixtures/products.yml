@@ -1,4 +1,4 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+﻿# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
   title: MyString
@@ -11,3 +11,13 @@ two:
   description: MyText
   image_url: MyString
   price: 9.99
+
+ruby:
+  title: Začínáme programovat v Ruby on Rails
+  description:
+    Ruby on Rails je revoluční programovací nástroj, jenž urychluje a zjednodušuje 
+    tvorbu webových stránek a jejich aplikací. Díky zapojení přímočarého jazyka Ruby 
+    a vývojové platformy, kterou poskytuje Rails, můžete ve velmi krátkém čase vytvořit 
+    plnohodnotné webové aplikace, i když nejste zkušenými programátory.
+  price: 337
+  image_url: zprr.png
