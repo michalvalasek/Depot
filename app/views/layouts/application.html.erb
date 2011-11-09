@@ -1,27 +1,29 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <title>Depot</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag "application" %>
   <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tag %>
 </head>
-<body>
+<body id="store" >
+  
+<div id="banner" >
+	<%= image_tag("logo.png") %>
+	<%= @page_title || "Pragmatická knihovna" %>
+</div>
 
-<div class="container">
-
-<header>
-	<h1>
-		<%= image_tag "rails.png" %> Depot
-	</h1>
-</header>
-
-<%= yield %>
-
-<footer>
-	<p>&copy; 2011 Michal Valasek</p>
-</footer>
-
+<div id="columns" >
+	<div id="side" >
+		<a href="http://www...." >Úvod</a><br />
+		<a href="http://www..../faq" >Otázky</a><br />
+		<a href="http://www..../news" >Novinky</a><br />
+		<a href="http://www..../contact" >Kontakt</a><br />
+	</div>
+	
+	<div id="main" >
+		<%= yield %>
+	</div>
 </div>
 
 </body>
