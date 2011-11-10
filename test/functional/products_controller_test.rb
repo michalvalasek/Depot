@@ -1,6 +1,9 @@
+#encoding: utf-8
+
 require 'test_helper'
 
 class ProductsControllerTest < ActionController::TestCase
+  
   setup do
     @product = products(:one)
     @valid_product_data = {
@@ -15,8 +18,12 @@ class ProductsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:products)
+    assert_select '#product_list tr', 3
+    products.each do |prod|
+      assert_select 'dt', prod.title
+    end
   end
-
+  
   test "should get new" do
     get :new
     assert_response :success
@@ -52,4 +59,5 @@ class ProductsControllerTest < ActionController::TestCase
 
     assert_redirected_to products_path
   end
+  
 end
