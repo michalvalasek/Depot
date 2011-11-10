@@ -1,3 +1,5 @@
+<p><%= session[:access_counter] %> návštev na titulke.</p>
+
 <% if notice %>
 	<p id="notice"><%= notice %></p>
 <% end %>
@@ -6,13 +8,14 @@
 
 <% @products.each do |product| %>
 	<div class="entry">
-		<%= image_tag( product.image_url ) %>
+		<%= link_to image_tag( product.image_url ), line_items_path(:product_id => product), {:method => :post} %>
 		<h3><%= product.title %></h3>
 		<%= sanitize(product.description) %>
 		<div class="price_line">
 			<span class="price">
 				<%= number_to_currency(product.price, :locale => :cs) %>
 			</span>
+			<%= button_to 'Add to cart', line_items_path(:product_id => product) %>
 		</div>
 	</div>
 <% end %>

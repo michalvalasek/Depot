@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Nákupní košík</h2>
+
+<% if @cart.line_items.count > 0 %>
+	<h3>Obsah košíku</h3>
+	<ul>
+	<% @cart.line_items.each do |li| %>
+		<li><%= li.product.title %></li>
+	<% end %>
+	</ul>
+<% else %>	
+	<h3>Košík je zatiaľ prázdny.</h3>
+<% end %>
+
+<%= link_to 'Edit', edit_cart_path(@cart) %> |
+<%= link_to 'Back', carts_path %>
