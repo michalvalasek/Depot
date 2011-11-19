@@ -12,6 +12,9 @@
 			<td class="item_price">
 				<%= number_to_currency li.total_price, :locale => :cs %>
 			</td>
+			<td>
+				<%= button_to 'Odobrať z košíka', li, :method => :delete, :confirm => 'Naozaj odobrať?' %>
+			</td>
 		</tr>
 		<% end %>
 		
