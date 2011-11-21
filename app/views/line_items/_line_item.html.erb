@@ -1,0 +1,10 @@
+<tr>
+	<td><%= line_item.quantity %> &times;</td>
+	<td><%= line_item.product.title %></td>
+	<td class="item_price">
+		<%= number_to_currency line_item.total_price, :locale => :cs %>
+	</td>
+	<td>
+		<%= button_to 'x', line_item, :method => :delete, :confirm => 'Naozaj odobrať?', :title => 'Odobrať z košíka' %>
+	</td>
+</tr>

@@ -2,6 +2,7 @@ class StoreController < ApplicationController
   
   def index
     @products = Product.all
+    @cart = current_cart
     
     if session[:access_counter].nil?
       session[:access_counter] = 0

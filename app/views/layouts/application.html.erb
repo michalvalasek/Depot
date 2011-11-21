@@ -14,7 +14,12 @@
 </div>
 
 <div id="columns" >
+	
 	<div id="side" >
+		<div id="cart">
+			<%= render @cart %>
+		</div>
+		
 		<a href="/" >Úvod</a><br />
 		<a href="http://www..../faq" >Otázky</a><br />
 		<a href="http://www..../news" >Novinky</a><br />
@@ -25,6 +30,7 @@
 	<div id="main" >
 		<%= yield %>
 	</div>
+	
 </div>
 
 </body>

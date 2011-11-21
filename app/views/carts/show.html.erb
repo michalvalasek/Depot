@@ -1,34 +1,8 @@
+<% unless notice.nil? %>
 <p id="notice"><%= notice %></p>
-
-<div class="cart_title">Nákupní košík</div>
-
-<% if @cart.line_items.count > 0 %>
-	
-	<table>
-		<% @cart.line_items.each do |li| %>
-		<tr>
-			<td><%= li.quantity %> &times;</td>
-			<td><%= li.product.title %></td>
-			<td class="item_price">
-				<%= number_to_currency li.total_price, :locale => :cs %>
-			</td>
-			<td>
-				<%= button_to 'Odobrať z košíka', li, :method => :delete, :confirm => 'Naozaj odobrať?' %>
-			</td>
-		</tr>
-		<% end %>
-		
-		<tr class="total_line">
-			<td colspan="2">Spolu:</td>
-			<td class="total_cell">
-				<%= number_to_currency @cart.total_price, :locale => :cs %>
-			</td>
-		</tr>
-	</table>
-	<%= button_to 'Vyprázdniť košík', @cart, :method => :delete, :confirm => 'Naozaj vyprázdniť?' %>
-<% else %>	
-	<h3>Košík je zatiaľ prázdny.</h3>
 <% end %>
+
+<%= render @cart %>
 
 <%= link_to 'Edit', edit_cart_path(@cart) %> |
 <%= link_to 'Back', carts_path %>
