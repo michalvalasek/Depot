@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'test_helper'
 
 class LineItemsControllerTest < ActionController::TestCase
@@ -21,7 +23,18 @@ class LineItemsControllerTest < ActionController::TestCase
       post :create, :product_id => products(:ruby).id
     end
 
-    assert_redirected_to cart_path(assigns(:line_item).cart)
+    assert_redirected_to store_path
+  end
+  
+  test "should create line_item via ajax" do
+    assert_difference('LineItem.count') do
+      xhr :post, :create, :product_id => products(:ruby).id
+    end
+    assert_response :success
+    assert_select_jquery :html, '#cart' do
+      #assert_select 'tr#current_item td', /Začínáme programovat v Ruby on Rails/
+      assert_select 'tr#current_item td', products(:ruby).title
+    end
   end
 
   test "should show line_item" do
@@ -44,6 +57,26 @@ class LineItemsControllerTest < ActionController::TestCase
       delete :destroy, id: @line_item.to_param
     end
 
-    assert_redirected_to cart_path(@line_item.cart)
+    assert_redirected_to store_path
+  end
+  
+  test "should decrease quantity" do
+    cart = Cart.create
+    session[:cart_id] = cart.id
+    LineItem.create(:cart => cart, :product => products(:ruby), :quantity => 2)
+    
+    assert_difference('LineItem.count', -1) do
+      xhr :post, :decrement, :id => products(:ruby).id
+    end
+    
+    assert_response :success
+    
+    #assert_select_jquery :html, '#cart' do
+     # assert_select 'tr#current_item td', /Programming Ruby 1.9/
+    #end
+  end
+  
+  test "should remove cart from sidebar" do
+    
   end
 end

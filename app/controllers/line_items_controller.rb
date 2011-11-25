@@ -45,16 +45,17 @@ class LineItemsController < ApplicationController
     @cart = current_cart
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
-    
     session[:access_counter] = 0
-    
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_url }
-        format.json { render json: @line_item, status: :created, location: @line_item }
+        format.js   { @current_item = @line_item }
+        format.json { render json: @line_item,
+          status: :created, location: @line_item }
       else
         format.html { render action: "new" }
-        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+        format.json { render json: @line_item.errors,
+          status: :unprocessable_entity }
       end
     end
   end
@@ -86,4 +87,24 @@ class LineItemsController < ApplicationController
       format.json { head :ok }
     end
   end
+  
+  # POST /line_items/1/decrement
+  # POST /line_items/1.json/decrement
+  def decrement
+    @cart = current_cart
+    
+    @line_item = @cart.decrement_line_item_quantity(params[:id])
+        
+    respond_to do |format|
+      if @line_item.save
+        format.html { redirect_to store_path, :notice => "Line item was successfully updated." }
+        format.js { @current_line = @line_item }
+        format.json { head :ok }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @line_item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
 end

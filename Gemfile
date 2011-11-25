@@ -30,6 +30,8 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem 'will_paginate', '>= 3.0.pre'
+
 group :test do
   # Pretty printed test output
   gem 'minitest'

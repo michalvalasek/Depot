@@ -1,8 +1,10 @@
+.bundle
 .DS_Store
+.idea
+.vagrant
 app/.DS_Store
 app/assets/.DS_Store
 public/.DS_Store
-.bundle
 db/*.sqlite3
 log/*.log
 tmp/

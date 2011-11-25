@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿<!-- START:head -->
+<!DOCTYPE html>
 <html>
 <head>
   <title>Depot</title>
@@ -6,32 +7,35 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
 </head>
-<body id="store" >
+<!-- END:head -->
+<body class="<%= controller.controller_name %>">
   
-<div id="banner" >
-	<%= image_tag("logo.png") %>
-	<%= @page_title || "Pragmatická knihovna" %>
-</div>
-
-<div id="columns" >
+	<div id="banner">
+		<%= image_tag("logo.png") %>
+		<%= @page_title || "Pragmatic Bookshelf" %>
+	</div>
 	
-	<div id="side" >
-		<div id="cart">
-			<%= render @cart %>
+	<div id="columns">
+		
+		<div id="side">
+			<% if @cart %>
+				<%= hidden_div_if(@cart.line_items.empty?,{:id=>'cart'}) do %>
+					<%= render @cart %>
+				<% end %>
+			<% end %>
+			
+			<ul>
+				<li><a href="http://www....">Home</a></li>
+				<li><a href="http://www..../faq">Questions</a></li>
+				<li><a href="http://www..../news">News</a></li>
+				<li><a href="http://www..../contact">Contact</a></li>
+			</ul>
 		</div>
 		
-		<a href="/" >Úvod</a><br />
-		<a href="http://www..../faq" >Otázky</a><br />
-		<a href="http://www..../news" >Novinky</a><br />
-		<a href="http://www..../contact" >Kontakt</a><br />
-		<p class="datetime"><%= Time.now.strftime("%H:%M %d.%m.%Y") %></p>
+		<div id="main">
+			<%= yield %>
+		</div>
+		
 	</div>
-	
-	<div id="main" >
-		<%= yield %>
-	</div>
-	
-</div>
-
 </body>
 </html>

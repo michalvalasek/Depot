@@ -1,8 +1,7 @@
-<div class="cart_title">Nákupní košík</div>
-	
+<div class="cart_title">Nákupní košík</div>	
 <table>
 	<%= render(cart.line_items) %>
-	
+
 	<tr class="total_line">
 		<td colspan="2">Spolu:</td>
 		<td class="total_cell">
@@ -11,4 +10,6 @@
 	</tr>
 </table>
 
-<%= button_to 'Vyprázdniť košík', cart, :method => :delete, :confirm => 'Naozaj vyprázdniť?' %>
+<%= button_to 'Objednat', new_order_path, :method => :get %>
+
+<%= button_to 'Vyprázdniť košík', cart, :remote => true, :method => :delete, :confirm => 'Naozaj vyprázdniť?' %>
