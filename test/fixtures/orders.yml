@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: Jakub Dunda
+  address: MyText
+  email: kuba@nekde.cz
+  pay_type: Dobírka
+
+two:
+  name: MyString
+  address: MyText
+  email: MyString
+  pay_type: MyString
