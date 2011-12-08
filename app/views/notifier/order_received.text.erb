@@ -1,0 +1,9 @@
+Dobrý deň <%= @order.name %>,
+
+ďakujeme Vám za objednávku na webe Pragmatická knižnica.
+
+Objednali ste si nasledujúce položky:
+
+<%= render @order.line_items %>
+
+Informáciu o expedovaní objednávky Vám zašleme v samostatnom e-maili.

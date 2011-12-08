@@ -1,0 +1,12 @@
+<h3>Vaša objednávke na webe Pragmatická knižnica bola prijatá.</h3>
+
+<p>+Dakujeme Vám, že ste si objednali nasledujúce tituly:</p>
+<table>
+  <tr>
+    <th colspan="2">Množstvo</th>
+    <th>Popis</th>
+  </tr>
+	<%= render @order.line_items %>
+</table>
+
+<p>Informáciu o expedovaní objednávky Vám zašleme v samostatnom e-maili.</p>

@@ -32,8 +32,12 @@ gem 'jquery-rails'
 
 gem 'will_paginate', '>= 3.0.pre'
 
+gem 'bcrypt-ruby'
+
 group :test do
   # Pretty printed test output
-  gem 'minitest'
+  #gem 'minitest'
+  gem 'test-unit'
+
   gem 'turn', :require => false
 end
