@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 		helper_method :current_user
 
 		def authorize
-			unless User.find_by_id(session[:user_id])
+			unless User.find_by_id(session[:user_id]) || session[:user_id] = 0
 				redirect_to login_url, notice: "Prihláste sa prosím."
 			end
 		end

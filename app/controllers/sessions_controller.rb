@@ -8,12 +8,19 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		user = User.find_by_email(params[:email])
-		if user && user.authenticate(params[:password])
-			session[:user_id] = user.id
-			redirect_to admin_url, notice: "Ste prihlásený!"
+
+		# don't authenticate if there's no admin user yet
+		if User.count.zero?
+			session[:user_id] = 0
+			redirect_to admin_url, notice: "Ste prihlásený ako dočasný správca. Vytvorte prvého používateľa!"
 		else
-			redirect_to login_url, alert: "Neplatná kombinácia emailu a hesla."
+			user = User.find_by_email(params[:email])
+			if user && user.authenticate(params[:password])
+				session[:user_id] = user.id
+				redirect_to admin_url, notice: "Ste prihlásený!"
+			else
+				redirect_to login_url, alert: "Neplatná kombinácia emailu a hesla."
+			end
 		end
 	end
 

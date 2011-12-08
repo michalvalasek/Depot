@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
@@ -44,7 +46,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_url, notice: 'Successfully signed up!' }
+        format.html { redirect_to users_url, notice: 'Používateľ bol vytvorený.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -73,7 +75,12 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
+    begin
+      @user.destroy
+      flash[:notice] = "Používateľ #{@user.name} bol odstránený."
+    rescue Exception => e
+	    flash[:notice] = e.message
+	  end
 
     respond_to do |format|
       format.html { redirect_to users_url }
