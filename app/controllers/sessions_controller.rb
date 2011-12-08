@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class SessionsController < ApplicationController
 
 	skip_before_filter :authorize
@@ -9,9 +11,9 @@ class SessionsController < ApplicationController
 		user = User.find_by_email(params[:email])
 		if user && user.authenticate(params[:password])
 			session[:user_id] = user.id
-			redirect_to admin_url, notice: "Logged in!"
+			redirect_to admin_url, notice: "Ste prihlásený!"
 		else
-			redirect_to login_url, alert: "Invalid email or password."
+			redirect_to login_url, alert: "Neplatná kombinácia emailu a hesla."
 		end
 	end
 
